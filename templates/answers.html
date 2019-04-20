@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="content" id="experiment-article-section-2-content">
+	<div class="questions">
+		<h4>Quiz</h4>
+		<ol>
+		{%for users in result%}
+			<li>{{users.a1}}</li>
+		{%endfor%}
+		</ol>
+	</div>
+	<button id="buto" onclick="showDiv()">Show Answers</button>
+	<div class="answers" id="answer" style="display: none">
+		<h5>Answers</h5>
+		<ol>
+		{%for users in result%}
+			<li>{{users.a2}}</li>
+		{%endfor%}
+		</ol>
+	</div>
+</div>						
+
+<script type="text/javascript">
+	function showDiv() {
+		if(document.getElementById('buto').innerHTML === 'Hide Answers'){
+			console.log("yo");
+			document.getElementById('answer').style.display = 'none';
+			document.getElementById('buto').innerHTML = 'Show Answers';
+		}
+		else if(document.getElementById('buto').innerHTML === 'Show Answers'){
+			console.log("yo2");
+			document.getElementById('answer').style.display = 'block';
+			document.getElementById('buto').innerHTML = 'Hide Answers';
+		}
+	}
+</script>
+{% endblock content %}

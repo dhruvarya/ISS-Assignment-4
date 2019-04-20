@@ -1,0 +1,219 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="content" id="experiment-article-section-4-content">
+	<div id="viterbi_decoding">
+		<div id="experiment-article-section-4-content" class="content">
+			<div id="viterbi_decoding">
+
+				<center><h2>Corpus A</h2></center>
+				<br>
+				<div id="corpus" align="center"></div><br>
+				<div id="fldiv" align="center"></div>
+
+				<!-- ///////////////////////////////////////////// -->
+				<div id="jsid" style="display: block;">
+					<table width="100%" style="background-color:#FFD4A8; padding:0px; margin:0px">
+						<tbody>
+							<tr>
+								<th>Emission Matrix</th>
+							</tr>
+							<tr>
+								<td align="center">
+									<table width="100%" style="padding:0px; margin:0px">
+										<tbody>
+											<tr>
+												<td></td>
+												<td align="center"><b>book </b></td>
+												<td align="center"><b>park</b></td>
+												<td align="center"><b>car</b></td>
+												<td align="center"><b>is</b></td>
+												<td align="center"><b>in</b></td>
+												<td align="center"><b>a</b></td>
+												<td align="center"><b>the</b></td>
+											</tr>
+											<tr>
+												<td align="center"><b>determiner</b></td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">1</td>
+												<td align="center">1</td>
+											</tr>
+											<tr>
+												<td align="center"><b>noun</b></td>
+												<td align="center">0.5</td>
+												<td align="center">0.5</td>
+												<td align="center">1</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+											</tr>
+											<tr>
+												<td align="center"><b>verb</b></td>
+												<td align="center">0.5</td>
+												<td align="center">0.5</td>
+												<td align="center">0</td>
+												<td align="center">1</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+											</tr>
+											<tr>
+												<td align="center"><b>preposition</b></td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">1</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table><br><br><br>
+					<table width="100%" style="background-color:#FFD4A8; padding:0px; margin:0px">
+						<tbody>
+							<tr>
+								<th>Transition Matrix</th>
+							</tr>
+							<tr>
+								<td align="center">
+									<table width="100%" style="margin:0px; padding:0px">
+										<tbody>
+											<tr>
+												<td></td>
+												<td align="center"><b>eos</b></td>
+												<td align="center"><b>determiner</b></td>
+												<td align="center"><b>noun</b></td>
+												<td align="center"><b>verb</b></td>
+												<td align="center"><b>preposition</b></td>
+											</tr>
+											<tr>
+												<td align="center"><b>eos</b></td>
+												<td align="center">0</td>
+												<td align="center">0.33</td>
+												<td align="center">0</td>
+												<td align="center">0.5</td>
+												<td align="center">0</td>
+											</tr>
+											<tr>
+												<td align="center"><b>determiner</b></td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">1</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+											</tr>
+											<tr>
+												<td align="center"><b>noun</b></td>
+												<td align="center">1</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">0.5</td>
+												<td align="center">0</td>
+											</tr>
+											<tr>
+												<td align="center"><b>verb</b></td>
+												<td align="center">0</td>
+												<td align="center">0.33</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">1</td>
+											</tr>
+											<tr>
+												<td align="center"><b>preposition</b></td>
+												<td align="center">0</td>
+												<td align="center">0.33</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+												<td align="center">0</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table><br><br><br><b>Viterbi Decoding</b><br><br><b>Sentence:</b> Book a park<p
+						style="color:blue;font-style:oblique;">You can answer a column only if you have completed the
+						previous ones.(note:answer can also be upto three decimals)</p>
+					<form onsubmit="checkValue()" method="POST" id="mothform">
+						<table align="center" style="background-color:#FFD4A8;" border="0" id="viterbiDecoding"
+							width="50%">
+							<tbody>
+								<tr>
+
+									<td></td>
+									<td align="center"><b>Book</b></td>
+									<td align="center"><b>a</b></td>
+									<td align="center"><b>park</b></td>
+								</tr>
+
+								<tr>
+									<td align="center"><b>determiner</b></td>
+									<td id="r0c1" align="center"><input type="text" name="v0" id="v0"
+											onclick="change();" style="width:30px" align="center" value="0"></td>
+									<td id="r0c2" align="center">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+									<td id="r0c3" align="center">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr>
+									<td align="center"><b>noun</b></td>
+									<td id="r1c1" align="center"><input type="text" name="v1" id="v1"
+											onclick="change();" style="width:30px" align="center" value="0"></td>
+									<td id="r1c2" align="center">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+									<td id="r1c3" align="center">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr>
+									<td align="center"><b>verb</b></td>
+									<td id="r2c1" align="center"><input type="text" name="v2" id="v2"
+											onclick="change();" style="width:30px" align="center" value="0"></td>
+									<td id="r2c2" align="center">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+									<td id="r2c3" align="center">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+								</tr>
+								<tr>
+									<td align="center"><b>preposition</b></td>
+									<td id="r3c1" align="center"><input type="text" name="v3" id="v3"
+											onclick="change();" style="width:30px" align="center" value="0"></td>
+									<td id="r3c2" align="center">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+									<td id="r3c3" align="center">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+								</tr>
+							</tbody>
+						</table><br><br>
+						<div id="valueCheckBox"><button type="button" id="valuechecker"
+								onclick="checkValue()">Check</button></div><br><br>
+						<div align="center" id="answer"></div>
+					</form>
+					<div align="center" id="checkresult"></div>
+					<div align="center" id="showCA"></div>
+				</div>
+			</div>
+			<!-- ///////////////////////////////////////////// -->
+
+		</div>
+	</div>
+
+</div>
+
+{% endblock content %}
